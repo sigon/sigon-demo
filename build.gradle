@@ -1,0 +1,86 @@
+allprojects {
+
+        group = 'com.sigon.demo'
+        version = '0.1-SNAPSHOT'
+        tasks.withType(JavaCompile) {
+                options.encoding = "UTF-8"
+        }
+}
+
+
+subprojects {project->
+        apply plugin: "java"
+        apply plugin: "idea"
+        apply plugin: 'maven-publish'
+        apply plugin: 'maven'
+
+
+        repositories {
+                mavenLocal()
+//                maven { url "http://localhost:8081/repository/maven-public/" }
+//                maven { url "http://dist.wso2.org/maven2/" }
+                maven { url "http://maven.jahia.org/maven2/" }
+                maven { url "http://repository.jboss.org/nexus/content/groups/public/" }
+                mavenCentral()
+        }
+
+        ext {
+                mavenUsername = 'admin'
+                mavenPassword = 'password'
+                nexusUrl = 'http://nexushost:8081'
+                springVersion = "4.3.3.RELEASE"
+
+				
+        }
+        dependencies {
+                compile(
+                        'org.slf4j:slf4j-api:1.7.12',
+                        "log4j:log4j:1.2.16",
+                        'net.sf.json-lib:json-lib:2.4:jdk15',
+                        "org.springframework:spring-beans:$springVersion",
+                        "org.springframework:spring-aop:$springVersion",
+                )
+                testCompile 'junit:junit:4.12'
+
+        }
+
+        publishing {
+                publications {
+                        maven(MavenPublication) {
+                                groupId rootProject.group
+                                artifactId project.name
+                                version rootProject.version
+
+                                from components.java
+                        }
+                }
+                repositories {
+                        maven {
+                                // change to point to your repo, e.g. http://my.org/repo
+                                url "$nexusUrl/nexus/content/repositories/snapshots/"
+                                //url "http://www.aunewtop.com:8081/nexus/content/repositories/snapshots"
+                                credentials {
+                                        username 'admin'
+                                        password 'password'
+                                }
+
+                        }
+                }
+        }
+        uploadArchives {
+                repositories.mavenDeployer {
+                        pom.groupId = group
+                        pom.artifactId = project.name
+                        pom.version = version
+                        // 修改为自己刚才创建的仓库地址
+
+                        repository(url: "$nexusUrl/nexus/content/repositories/releases/") {
+                                authentication(userName: mavenUsername, password: mavenPassword)
+                        }
+                        snapshotRepository(url: "$nexusUrl/nexus/content/repositories/snapshots/") {
+                                authentication(userName: mavenUsername, password: mavenPassword)
+                        }
+                }
+        }
+
+}

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="StreamTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2016-10-28T13:33:44" hostname="PCOS-1602150920" time="0.0">
+  <properties/>
+  <testcase name="streamtest" classname="StreamTest" time="0.0"/>
+  <system-out><![CDATA[11
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

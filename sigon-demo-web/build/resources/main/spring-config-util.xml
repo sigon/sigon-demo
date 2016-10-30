@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
+       default-lazy-init="true">
+
+    <bean id="xmemCacheClient" class="com.mrp.common.util.cache.XmemCacheClient" init-method="init">
+        <property name="hosts" value="${serverside.memcached.hosts}"/><!--缓存hosts配置-->
+        <property name="connTimeOut" value="5000"/><!--socket连接超时时间默认5000ms-->
+        <property name="opTimeOut" value="3000"/><!--操作超时时间默认3000ms-->
+        <property name="connPoolSize" value="1"/><!--对每个节点的连接池大小默认1-->
+        <property name="conhash" value="true"/><!--是否使用一致性hash-->
+        <property name="failuerMod" value="false"/><!--是否使用failuerMod-->
+    </bean>
+    <!-- 邮件发送工具类 -->
+    <bean id="javaMailSenderImpl" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${mail.sender.host}"/>
+        <property name="username" value="${mail.sender.username}"/>
+        <property name="password" value="${mail.sender.password}"/>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.timeout">${mail.sender.timeout}</prop>
+            </props>
+        </property>
+    </bean>
+
+</beans>

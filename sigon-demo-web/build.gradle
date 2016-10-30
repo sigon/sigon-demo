@@ -1,0 +1,40 @@
+apply plugin: "war"
+
+dependencies {
+        compile(
+                "org.springframework:spring-context:$springVersion",
+                "org.springframework:spring-web:$springVersion",
+                "org.springframework:spring-webmvc:$springVersion",
+                "org.springframework:spring-jdbc:$springVersion",
+                "org.springframework:spring-tx:$springVersion",
+                "org.springframework:spring-context-support:$springVersion",
+
+                'com.thoughtworks.xstream:xstream:1.4.7',
+                'dom4j:dom4j:1.6.1',
+                'commons-lang:commons-lang:2.6',
+                'javassist:javassist:3.8.0.GA',
+                'commons-lang:commons-lang:2.4',
+                'org.freemarker:freemarker:2.3.23',
+                'javax.servlet:servlet-api:2.5',
+                'net.sourceforge.pjl-comp-filter:pjl-comp-filter:1.7',
+                'com.google.code.kaptcha:kaptcha:2.3',
+                'net.sf.ehcache:ehcache:2.10.3',
+                'org.springframework.data:spring-data-mongodb:1.9.4.RELEASE',
+                'org.mybatis:mybatis:3.4.1',
+                'aopalliance:aopalliance:1.0',
+                project(':sigon-demo-domain'),
+                project(':sigon-demo-service')
+        )
+}
+
+ext {
+        //profile = project['profile']
+}
+def loadProperties(){
+        def props = new Properties()
+        new File("${rootProject.projectDir}/config/test.properties")
+                .withInputStream {
+                stream -> props.load(stream)
+        }
+        props
+}

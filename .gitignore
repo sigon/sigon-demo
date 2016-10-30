@@ -1,0 +1,10 @@
+profiles.xml
+*.iml
+.idea
+target
+*.war
+*.thmx
+build
+.gradle
+.DS_Store
+classes
