@@ -16,7 +16,7 @@
     <aop:aspectj-autoproxy/>
 
     <context:property-placeholder location="classpath*:/important.properties" ignore-resource-not-found="true" ignore-unresolvable="true" />
-    <context:property-placeholder location="classpath*:/deploy/test.properties" ignore-resource-not-found="true" ignore-unresolvable="true" />
+    <context:property-placeholder location="classpath*:/deploy.properties" ignore-resource-not-found="true" ignore-unresolvable="true" />
 
     <context:component-scan base-package="com.sigon.demo"/>
     <cache:annotation-driven />
@@ -44,7 +44,7 @@
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="configLocation" value="classpath:mapper.xml"></property>
-        <property name="mapperLocations" value="classpath:sqlmap/demo/mapping/*.xml"></property>
+        <property name="mapperLocations" value="classpath:sqlmap/mapping/*.xml"></property>
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 
@@ -115,5 +115,5 @@
 
     <!--<import resource="spring-config-util.xml"/>-->
     <import resource="spring-config-common.xml"/>
-    <import resource="spring-config-mongo.xml"/>
+    <!--<import resource="spring-config-mongo.xml"/>-->
 </beans>

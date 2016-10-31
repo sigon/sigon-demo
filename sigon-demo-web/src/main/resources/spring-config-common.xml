@@ -27,8 +27,7 @@
                 <entry key="systemVersion" value="${system.version}" />
                 <entry key="systemDescription" value="${system.description}" />
                 <entry key="locale" value="${locale}" />
-                <entry key="picBaseUrl" value="${upYun.pic.host}" />
-                <entry key="base" value="${serverside.domain.url}" />
+                <entry key="base" value="${serviceside.domain.url}" />
                 <!--<entry key="pagination" value-ref="paginationDirective" />-->
             </map>
         </property>

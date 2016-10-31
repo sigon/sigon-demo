@@ -22,17 +22,24 @@ dependencies {
                 'org.springframework.data:spring-data-mongodb:1.9.4.RELEASE',
                 'org.mybatis:mybatis:3.4.1',
                 'aopalliance:aopalliance:1.0',
+                'org.aspectj:aspectjrt:1.8.9',
                 project(':sigon-demo-domain'),
                 project(':sigon-demo-service')
         )
+        compile group: 'commons-fileupload', name: 'commons-fileupload', version: '1.3.2'
 }
 
 ext {
-        //profile = project['profile']
+        if (project.hasProperty('profile')) {
+                profile = project['profile']
+        } else {
+                profile = "test"
+        }
+        println "profile:" + profile
 }
 def loadProperties(){
         def props = new Properties()
-        new File("${rootProject.projectDir}/config/test.properties")
+        new File("${rootProject.projectDir}/config/${profile}.properties")
                 .withInputStream {
                 stream -> props.load(stream)
         }
