@@ -1,9 +1,9 @@
 apply plugin: "java"
 
-    // dependencies {
-    //         compile(
-    //                 project(':sigon-demo-domain'),
-    //                 project(':sigon-demo-dao')
-    //         )
+     dependencies {
+             compile(
+                     'org.danny.common:danny-common-pagination:0.1-SNAPSHOT',
 
-    // }
+             )
+
+     }
