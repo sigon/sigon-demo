@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sigon.demo.dao.mapper.SysCompanyMapper">
+    <resultMap id="BaseResultMap" type="com.sigon.demo.domain.model.SysCompany">
+        <id column="id" jdbcType="VARCHAR" property="id" />
+        <result column="comname" jdbcType="VARCHAR" property="comname" />
+        <result column="comcode" jdbcType="VARCHAR" property="comcode" />
+        <result column="logopath" jdbcType="VARCHAR" property="logopath" />
+        <result column="comlicencepath" jdbcType="VARCHAR" property="comlicencepath" />
+        <result column="username" jdbcType="VARCHAR" property="username" />
+        <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+        <result column="comcode2" jdbcType="VARCHAR" property="comcode2" />
+        <result column="remark" jdbcType="VARCHAR" property="remark" />
+        <result column="available" jdbcType="VARCHAR" property="available" />
+        <result column="createuser" jdbcType="VARCHAR" property="createuser" />
+        <result column="updateuser" jdbcType="VARCHAR" property="updateuser" />
+        <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+        <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        id, comname, comcode, logopath, comlicencepath, username, mobile, comcode2, remark, 
+        available, createuser, updateuser, createtime, updatetime
+    </sql>
+    <select id="selectByExample" parameterType="com.sigon.demo.domain.model.SysCompanyExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from sys_company
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+        <include refid="MysqlDialectSuffix" />
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select 
+        <include refid="Base_Column_List" />
+        from sys_company
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from sys_company
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.sigon.demo.domain.model.SysCompanyExample">
+        delete from sys_company
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.sigon.demo.domain.model.SysCompany">
+        insert into sys_company (id, comname, comcode, 
+            logopath, comlicencepath, username, 
+            mobile, comcode2, remark, 
+            available, createuser, updateuser, 
+            createtime, updatetime)
+        values (#{id,jdbcType=VARCHAR}, #{comname,jdbcType=VARCHAR}, #{comcode,jdbcType=VARCHAR}, 
+            #{logopath,jdbcType=VARCHAR}, #{comlicencepath,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+            #{mobile,jdbcType=VARCHAR}, #{comcode2,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+            #{available,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{updateuser,jdbcType=VARCHAR}, 
+            #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.sigon.demo.domain.model.SysCompany">
+        insert into sys_company
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="comname != null">
+                comname,
+            </if>
+            <if test="comcode != null">
+                comcode,
+            </if>
+            <if test="logopath != null">
+                logopath,
+            </if>
+            <if test="comlicencepath != null">
+                comlicencepath,
+            </if>
+            <if test="username != null">
+                username,
+            </if>
+            <if test="mobile != null">
+                mobile,
+            </if>
+            <if test="comcode2 != null">
+                comcode2,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="available != null">
+                available,
+            </if>
+            <if test="createuser != null">
+                createuser,
+            </if>
+            <if test="updateuser != null">
+                updateuser,
+            </if>
+            <if test="createtime != null">
+                createtime,
+            </if>
+            <if test="updatetime != null">
+                updatetime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="comname != null">
+                #{comname,jdbcType=VARCHAR},
+            </if>
+            <if test="comcode != null">
+                #{comcode,jdbcType=VARCHAR},
+            </if>
+            <if test="logopath != null">
+                #{logopath,jdbcType=VARCHAR},
+            </if>
+            <if test="comlicencepath != null">
+                #{comlicencepath,jdbcType=VARCHAR},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="comcode2 != null">
+                #{comcode2,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="available != null">
+                #{available,jdbcType=VARCHAR},
+            </if>
+            <if test="createuser != null">
+                #{createuser,jdbcType=VARCHAR},
+            </if>
+            <if test="updateuser != null">
+                #{updateuser,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatetime != null">
+                #{updatetime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.sigon.demo.domain.model.SysCompanyExample" resultType="java.lang.Long">
+        select count(*) from sys_company
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update sys_company
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=VARCHAR},
+            </if>
+            <if test="record.comname != null">
+                comname = #{record.comname,jdbcType=VARCHAR},
+            </if>
+            <if test="record.comcode != null">
+                comcode = #{record.comcode,jdbcType=VARCHAR},
+            </if>
+            <if test="record.logopath != null">
+                logopath = #{record.logopath,jdbcType=VARCHAR},
+            </if>
+            <if test="record.comlicencepath != null">
+                comlicencepath = #{record.comlicencepath,jdbcType=VARCHAR},
+            </if>
+            <if test="record.username != null">
+                username = #{record.username,jdbcType=VARCHAR},
+            </if>
+            <if test="record.mobile != null">
+                mobile = #{record.mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="record.comcode2 != null">
+                comcode2 = #{record.comcode2,jdbcType=VARCHAR},
+            </if>
+            <if test="record.remark != null">
+                remark = #{record.remark,jdbcType=VARCHAR},
+            </if>
+            <if test="record.available != null">
+                available = #{record.available,jdbcType=VARCHAR},
+            </if>
+            <if test="record.createuser != null">
+                createuser = #{record.createuser,jdbcType=VARCHAR},
+            </if>
+            <if test="record.updateuser != null">
+                updateuser = #{record.updateuser,jdbcType=VARCHAR},
+            </if>
+            <if test="record.createtime != null">
+                createtime = #{record.createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.updatetime != null">
+                updatetime = #{record.updatetime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update sys_company
+        set id = #{record.id,jdbcType=VARCHAR},
+            comname = #{record.comname,jdbcType=VARCHAR},
+            comcode = #{record.comcode,jdbcType=VARCHAR},
+            logopath = #{record.logopath,jdbcType=VARCHAR},
+            comlicencepath = #{record.comlicencepath,jdbcType=VARCHAR},
+            username = #{record.username,jdbcType=VARCHAR},
+            mobile = #{record.mobile,jdbcType=VARCHAR},
+            comcode2 = #{record.comcode2,jdbcType=VARCHAR},
+            remark = #{record.remark,jdbcType=VARCHAR},
+            available = #{record.available,jdbcType=VARCHAR},
+            createuser = #{record.createuser,jdbcType=VARCHAR},
+            updateuser = #{record.updateuser,jdbcType=VARCHAR},
+            createtime = #{record.createtime,jdbcType=TIMESTAMP},
+            updatetime = #{record.updatetime,jdbcType=TIMESTAMP}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.sigon.demo.domain.model.SysCompany">
+        update sys_company
+        <set>
+            <if test="comname != null">
+                comname = #{comname,jdbcType=VARCHAR},
+            </if>
+            <if test="comcode != null">
+                comcode = #{comcode,jdbcType=VARCHAR},
+            </if>
+            <if test="logopath != null">
+                logopath = #{logopath,jdbcType=VARCHAR},
+            </if>
+            <if test="comlicencepath != null">
+                comlicencepath = #{comlicencepath,jdbcType=VARCHAR},
+            </if>
+            <if test="username != null">
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                mobile = #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="comcode2 != null">
+                comcode2 = #{comcode2,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="available != null">
+                available = #{available,jdbcType=VARCHAR},
+            </if>
+            <if test="createuser != null">
+                createuser = #{createuser,jdbcType=VARCHAR},
+            </if>
+            <if test="updateuser != null">
+                updateuser = #{updateuser,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                createtime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatetime != null">
+                updatetime = #{updatetime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.sigon.demo.domain.model.SysCompany">
+        update sys_company
+        set comname = #{comname,jdbcType=VARCHAR},
+            comcode = #{comcode,jdbcType=VARCHAR},
+            logopath = #{logopath,jdbcType=VARCHAR},
+            comlicencepath = #{comlicencepath,jdbcType=VARCHAR},
+            username = #{username,jdbcType=VARCHAR},
+            mobile = #{mobile,jdbcType=VARCHAR},
+            comcode2 = #{comcode2,jdbcType=VARCHAR},
+            remark = #{remark,jdbcType=VARCHAR},
+            available = #{available,jdbcType=VARCHAR},
+            createuser = #{createuser,jdbcType=VARCHAR},
+            updateuser = #{updateuser,jdbcType=VARCHAR},
+            createtime = #{createtime,jdbcType=TIMESTAMP},
+            updatetime = #{updatetime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <sql id="MysqlDialectSuffix">
+        <if test="page != null">
+            limit #{page.end} offset #{page.begin}
+        </if>
+    </sql>
+</mapper>
