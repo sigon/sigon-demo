@@ -10,7 +10,7 @@
         <th>Option</th>
     </tr>
 
-[#list page.content as item]
+[#list list as item]
     <tr>
         <td>${item.comname}</td>
         <td>${item.comcode}</td>
@@ -20,9 +20,6 @@
 [/#list]
 </table>
 <div><a href="add.action">add</a> </div>
-[@pagination pageNumber = page.pageNumber totalPages = page.totalPages]
-    [#include "/include/pagination.ftl"]
-[/@pagination]
 <script>
     seajs.use("alert", function (alertM) {
         $(".delBtn").on("click", function(){

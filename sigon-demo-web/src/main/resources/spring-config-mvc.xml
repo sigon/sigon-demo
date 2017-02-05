@@ -65,23 +65,5 @@
         </property>
     </bean>
 
-    <!--<bean id="exceptionResolver" class="com.mrp.common.web.exception.ExceptionHandler">-->
-        <!--<property name="defaultErrorView" value="error/exception"/>-->
-        <!--<property name="defaultStatusCode" value="500"/>-->
-        <!--<property name="statusCodes">&lt;!&ndash; 配置多个statusCode &ndash;&gt;-->
-            <!--<props>-->
-                <!--<prop key="error1">404</prop>-->
-                <!--<prop key="error400">400</prop>-->
-                <!--<prop key="error500">500</prop>-->
-            <!--</props>-->
-        <!--</property>-->
-        <!--<property name="exceptionMappings">-->
-            <!--<props>-->
-                <!--<prop key="java.lang.exception">error/exception</prop>-->
-            <!--</props>-->
-        <!--</property>-->
-    <!--</bean>-->
-    <!--<bean class="com.aunewtop.common.web.action.LoginController"/>-->
-    <!--<bean class="com.aunewtop.common.web.action.CommonController"/>-->
     <import resource="spring-config-common.xml"/>
 </beans>

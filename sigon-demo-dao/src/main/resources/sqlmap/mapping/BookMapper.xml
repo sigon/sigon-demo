@@ -84,7 +84,6 @@
         <if test="orderByClause != null">
             order by ${orderByClause}
         </if>
-        <include refid="MysqlDialectSuffix" />
     </select>
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select 
@@ -241,9 +240,4 @@
             modify_date = #{modifyDate,jdbcType=DATE}
         where id = #{id,jdbcType=BIGINT}
     </update>
-    <sql id="MysqlDialectSuffix">
-        <if test="page != null">
-            limit #{page.end} offset #{page.begin}
-        </if>
-    </sql>
 </mapper>

@@ -4,10 +4,10 @@
 		 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
           http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		 version="2.5">
-<display-name>mrptrader</display-name>
+<display-name>sigon-demo</display-name>
 
-	<display-name>mingyuan</display-name>
-	<description>MingyuanSeller V1.0</description>
+	<display-name>sigon-demo</display-name>
+	<description>sigon-demo V1.0</description>
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>

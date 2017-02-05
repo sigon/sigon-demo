@@ -2,8 +2,8 @@ package com.sigon.demo.service.company;
 
 import com.sigon.demo.domain.model.SysCompany;
 import com.sigon.demo.domain.param.CompanyParam;
-import org.danny.common.pagination.Page;
-import org.danny.common.pagination.Pageable;
+
+import java.util.List;
 
 /**
  * Created by sigon on 2017/1/24.
@@ -18,5 +18,5 @@ public interface CompanyService {
 
     int update(SysCompany company);
 
-    Page<SysCompany> query(CompanyParam param, Pageable pageable);
+    List<SysCompany> query(CompanyParam param);
 }

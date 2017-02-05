@@ -3,13 +3,13 @@ package com.sigon.demo.web.action.company;
 import com.sigon.demo.domain.model.SysCompany;
 import com.sigon.demo.domain.param.CompanyParam;
 import com.sigon.demo.service.company.CompanyService;
-import org.danny.common.pagination.Page;
-import org.danny.common.pagination.Pageable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.List;
 
 /**
  * Created by sigon on 2017/1/25.
@@ -22,9 +22,9 @@ public class CompanyController {
     private CompanyService companyService;
 
     @RequestMapping("/list")
-    public String list(CompanyParam param, Pageable pageable, ModelMap model){
-        Page<SysCompany> page = companyService.query(param, pageable);
-        model.addAttribute("page", page);
+    public String list(CompanyParam param, ModelMap model){
+        List<SysCompany> list = companyService.query(param);
+        model.addAttribute("list", list);
         return "/company/list";
     }
 

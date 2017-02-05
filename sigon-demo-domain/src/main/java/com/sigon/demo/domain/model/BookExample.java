@@ -4,13 +4,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import org.danny.common.pagination.Pageable;
 
 public class BookExample {
     protected String orderByClause;
     protected boolean distinct;
     protected List<Criteria> oredCriteria;
-    private Pageable page;
 
     public BookExample() {
         oredCriteria = new ArrayList<Criteria>();
@@ -63,14 +61,6 @@ public class BookExample {
         oredCriteria.clear();
         orderByClause = null;
         distinct = false;
-    }
-
-    public void setPage(Pageable page) {
-        this.page = page;
-    }
-
-    public Pageable getPage() {
-        return page;
     }
 
     protected abstract static class GeneratedCriteria {

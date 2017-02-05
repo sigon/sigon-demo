@@ -6,8 +6,6 @@ import com.sigon.demo.domain.model.SysCompanyExample;
 import com.sigon.demo.domain.param.CompanyParam;
 import com.sigon.demo.service.company.CompanyService;
 import org.apache.commons.lang.StringUtils;
-import org.danny.common.pagination.Page;
-import org.danny.common.pagination.Pageable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,10 +49,9 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public Page<SysCompany> query(CompanyParam param, Pageable pageable) {
+    public List<SysCompany> query(CompanyParam param) {
         SysCompanyExample example = new SysCompanyExample();
         SysCompanyExample.Criteria criteria = example.createCriteria();
-        example.setPage(pageable);
         if(StringUtils.isNotBlank(param.getComname())){
             criteria.andComnameLike("%" + param.getComname() + "%");
         }
@@ -75,6 +72,6 @@ public class CompanyServiceImpl implements CompanyService {
         if(c != 0){
             list = sysCompanyMapper.selectByExample(example);
         }
-        return new Page<>(list, c, pageable);
+        return list;
     }
 }

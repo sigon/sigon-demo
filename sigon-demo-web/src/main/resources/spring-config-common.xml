@@ -18,7 +18,6 @@
                 <prop key="time_format">${template.time_format}</prop>
                 <prop key="number_format">${template.number_format}</prop>
                 <prop key="boolean_format">${template.boolean_format}</prop>
-                <prop key="auto_import">include/aunewtop.ftl as aunewtop</prop>
             </props>
         </property>
         <property name="freemarkerVariables">
@@ -27,17 +26,9 @@
                 <entry key="systemVersion" value="${system.version}" />
                 <entry key="systemDescription" value="${system.description}" />
                 <entry key="locale" value="${locale}" />
-                <entry key="base" value="${serviceside.domain.url}" />
-                <entry key="pagination" value-ref="paginationDirective" />
+                <entry key="base" value="http://localhost:8080" />
+                <!--<entry key="pagination" value-ref="paginationDirective" />-->
             </map>
-        </property>
-    </bean>
-    <bean id="profileInvokeLogAdvice" class="com.sigon.demo.web.interceptor.ProfilerInterceptor">
-        <property name="switchOn">
-            <value>true</value>
-        </property>
-        <property name="threshold">
-            <value>200</value>
         </property>
     </bean>
     <!--<bean id="profileInvokeLogInterceptor" class="org.springframework.aop.support.DefaultPointcutAdvisor">-->
@@ -46,7 +37,7 @@
     <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
         <property name="interceptorNames">
             <list>
-                <idref bean="profileInvokeLogAdvice"/>
+                <!--<idref bean="profileInvokeLogAdvice"/>-->
             </list>
         </property>
         <property name="beanNames">

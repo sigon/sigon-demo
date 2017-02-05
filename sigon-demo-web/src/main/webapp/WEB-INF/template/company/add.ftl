@@ -1,3 +1,4 @@
+[#include "/include/head.ftl"]
 <form method="post" id="form1" action="add.action">
     <div>
         <div>
